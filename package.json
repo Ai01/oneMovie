@@ -1,0 +1,35 @@
+{
+  "name": "onemovie",
+  "version": "0.0.1",
+  "description": "根据描述推荐一部电影",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "dev": "nodemon index.js --exec babel-node --presets es2015,stage-2",
+    "build": "babel index.js -d dist",
+    "sere": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ai01/oneMovie.git"
+  },
+  "keywords": [
+    "one-movie"
+  ],
+  "author": "Ai01",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ai01/oneMovie/issues"
+  },
+  "homepage": "https://github.com/Ai01/oneMovie#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "nodemon": "^1.14.11"
+  },
+  "dependencies": {
+    "koa": "^2.4.1"
+  }
+}
