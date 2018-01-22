@@ -1,0 +1,31 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb-base",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "max-len": [1, 150],
+    "import/extensions": [
+      2,
+      {
+        "js": "never",
+        "jsx": "never"
+      }
+    ],
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [
+          "^[~]",
+          "^[/]",
+          "^[src]",
+          "^[configs]",
+          "^[utils]"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": 0
+  }
+}

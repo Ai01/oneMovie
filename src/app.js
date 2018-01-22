@@ -7,6 +7,8 @@ import Router from 'koa-router';
 import session from 'koa-session';
 import { SessionConfig } from './configs/session';
 
+import UserDomain from './models/user/userDomain';
+
 const app = new Koa();
 
 // session
@@ -16,7 +18,16 @@ app.use(session(SessionConfig, app));
 // router
 const router = new Router();
 
-router.get('/', (ctx) => {
+router.get('/', async (ctx) => {
+  const testUser = {
+    name: 'test',
+    password: 'test',
+    phone: '1111111111111',
+    email: 'test@test.com',
+  };
+
+  await UserDomain.create(testUser);
+
   ctx.body = 'hello oneMovie';
 });
 
