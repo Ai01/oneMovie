@@ -18,6 +18,7 @@ const router = new Router();
 
 router.get('/', ctx => {
   ctx.body = 'hello oneMovie';
+  console.log('test');
 });
 
 app.use(router.routes()).use(router.allowedMethods());
