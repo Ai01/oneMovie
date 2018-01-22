@@ -16,7 +16,7 @@ app.use(session(SessionConfig, app));
 // router
 const router = new Router();
 
-router.get('/', ctx => {
+router.get('/', (ctx) => {
   ctx.body = 'hello oneMovie';
 });
 

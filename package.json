@@ -7,8 +7,12 @@
     "test": "test",
     "dev": "nodemon index.js --exec babel-node",
     "build": "babel index.js -d dist",
-    "sere": "node dist/index.js"
+    "sere": "node dist/index.js",
+    "eslint": "eslint src/*"
   },
+  "pre-commit": [
+    "eslint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ai01/oneMovie.git"
@@ -25,10 +29,15 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "nodemon": "^1.14.11"
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nodemon": "^1.14.11",
+    "pre-commit": "^1.2.2"
   },
   "dependencies": {
     "koa": "^2.4.1",
-    "koa-router": "^7.3.0"
+    "koa-router": "^7.3.0",
+    "koa-session": "^5.8.1"
   }
 }
