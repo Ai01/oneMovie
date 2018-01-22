@@ -8,7 +8,9 @@
     "dev": "nodemon index.js --exec babel-node",
     "build": "babel index.js -d dist",
     "sere": "node dist/index.js",
-    "eslint": "eslint src/*"
+    "eslint": "eslint src/*",
+    "migrate": "cross-env NODE_ENV=development sequelize db:migrate",
+    "migrate:undo": "cross-env NODE_ENV=development sequelize db:migrate:undo"
   },
   "pre-commit": [
     "eslint"
