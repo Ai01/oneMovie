@@ -10,7 +10,9 @@
     "sere": "node dist/index.js",
     "eslint": "eslint src/*",
     "migrate": "cross-env NODE_ENV=development sequelize db:migrate",
-    "migrate:undo": "cross-env NODE_ENV=development sequelize db:migrate:undo"
+    "migrate:undo": "cross-env NODE_ENV=development sequelize db:migrate:undo",
+    "rebuildDatabase": "cross-env NODE_ENV=development sh scripts/database/rebuildDatabase.sh",
+    "rebuildDatabaseByMock": "cross-env NODE_ENV=development sh scripts/database/rebuildDatabaseByMock.sh"
   },
   "pre-commit": [
     "eslint"
@@ -35,6 +37,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.3",
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",

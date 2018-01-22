@@ -3,7 +3,7 @@ const sequelizeConfig = {
   port: '3306',
   username: 'root',
   password: 'admin',
-  database: 'rbac',
+  database: 'oneMovie',
 };
 
 export default sequelizeConfig;
