@@ -12,7 +12,8 @@
     "migrate": "cross-env NODE_ENV=development sequelize db:migrate",
     "migrate:undo": "cross-env NODE_ENV=development sequelize db:migrate:undo",
     "rebuildDatabase": "cross-env NODE_ENV=development sh scripts/database/rebuildDatabase.sh",
-    "rebuildDatabaseByMock": "cross-env NODE_ENV=development sh scripts/database/rebuildDatabaseByMock.sh"
+    "rebuildDatabaseByMock": "cross-env NODE_ENV=development sh scripts/database/rebuildDatabaseByMock.sh",
+    "initial-dev-data": "babel-node scripts/database/initialDevData.js"
   },
   "pre-commit": [
     "eslint"

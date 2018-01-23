@@ -31,25 +31,19 @@ const User = sequelize.define(
       allowNull: false,
     },
 
-    // status: {
-    //   type: DataType.ENUM(...Object.values(accountStatus).map(status => status.value)),
-    //   defaultValue: accountStatus.ACTIVE.value,
-    //   allowNull: false,
-    // },
-
     password: {
       type: DataType.STRING,
       allowNull: false,
     },
   },
-  {
-    indexes: [
-      {
-        unique: true,
-        fields: ['id', 'phone'],
-      },
-    ],
-  },
+  // {
+  //   indexes: [
+  //     {
+  //       unique: true,
+  //       fields: ['id', 'phone'],
+  //     },
+  //   ],
+  // },
 );
 
 export default User;

@@ -7,4 +7,8 @@ export default class BaseDomain {
     const instance = await this.model.findOne(options);
     return instance;
   }
+
+  static async create(attr) {
+    this.model.create(attr);
+  }
 }

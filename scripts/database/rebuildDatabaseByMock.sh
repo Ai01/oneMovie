@@ -14,6 +14,7 @@ mysql -uroot -padmin -h127.0.0.1 oneMovie < scripts/database/base.sql
 
 echo 'migrate'
 npm run migrate
+npm run initial-dev-data
 
 echo '备份数据'
 mysqldump -h127.0.0.1 -uroot -padmin onMovie > scripts/database/data.sql
