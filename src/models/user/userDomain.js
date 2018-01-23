@@ -8,16 +8,16 @@ class UserDomain extends BaseDomain {
     const {
       name, password, phone, email,
     } = account;
-    // const u = await UserDomain.findOne({
-    //   where: {
-    //     phone,
-    //   },
-    //   ...options,
-    // });
-    //
-    // if (u) {
-    //   throw new Error('此手机号已经存在，请检查');
-    // }
+    const u = await UserDomain.findOne({
+      where: {
+        phone,
+      },
+      ...options,
+    });
+
+    if (u) {
+      throw new Error('此手机号已经存在，请检查');
+    }
 
     return super.create(
       {

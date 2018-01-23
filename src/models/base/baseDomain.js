@@ -1,6 +1,4 @@
-// import { GcBaseError, GcArgumentsError } from 'src/util/error';
-
-export default class BaseDomain {
+class BaseDomain {
   static model;
 
   static async findOne(options) {
@@ -12,3 +10,5 @@ export default class BaseDomain {
     this.model.create(attr);
   }
 }
+
+export default BaseDomain;

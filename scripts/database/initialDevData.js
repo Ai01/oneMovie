@@ -9,6 +9,7 @@ const testAccount = {
 };
 
 const initialData = async () => {
+  // user data mock
   await UserModel.sync();
   await UserDomain.create(testAccount);
 };
