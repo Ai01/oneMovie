@@ -19,7 +19,7 @@ class UserDomain extends BaseDomain {
       throw new Error('此手机号已经存在，请检查');
     }
 
-    return super.create(
+    await super.create(
       {
         name,
         password,

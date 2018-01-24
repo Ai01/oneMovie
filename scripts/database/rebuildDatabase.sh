@@ -9,6 +9,6 @@ else
 fi
 
 mysql -uroot -padmin -h127.0.0.1 < scripts/database/init.sql
-mysql -uroot -padmin -h127.0.0.1 onMovie < scripts/database/data.sql
+mysql -uroot -padmin -h127.0.0.1 oneMovie < scripts/database/data.sql
 clear
 echo "\n\n 重建数据完成 \n"

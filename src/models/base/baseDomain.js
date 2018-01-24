@@ -6,8 +6,12 @@ class BaseDomain {
     return instance;
   }
 
-  static async create(attr) {
-    this.model.create(attr);
+  static async create(value, options) {
+    await this.model.create(value, options);
+  }
+
+  static async destory(options) {
+    await this.model.destory(options);
   }
 }
 
