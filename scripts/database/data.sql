@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `Role`
+--
+
+DROP TABLE IF EXISTS `Role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `privileges` varchar(1024) DEFAULT '',
+  `desc` varchar(128) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Role`
+--
+
+LOCK TABLES `Role` WRITE;
+/*!40000 ALTER TABLE `Role` DISABLE KEYS */;
+INSERT INTO `Role` VALUES (1,'a','p1;p2',NULL,'2018-01-24 17:28:44','2018-01-24 17:28:44'),(2,'a','p3;p4',NULL,'2018-01-24 17:28:44','2018-01-24 17:28:44');
+/*!40000 ALTER TABLE `Role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `SequelizeMeta`
 --
 
@@ -64,7 +92,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'test@test.com','test','1111111111','test','2018-01-24 14:26:16','2018-01-24 14:26:16'),(2,'test1@test1.com','test1','1111111112','test2','2018-01-24 14:26:16','2018-01-24 14:26:16');
+INSERT INTO `User` VALUES (1,'a@a.com','a','1111111111','a','2018-01-24 17:28:44','2018-01-24 17:28:44'),(2,'b@b.com','b','1111111112','b','2018-01-24 17:28:44','2018-01-24 17:28:44');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -77,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-24 14:26:16
+-- Dump completed on 2018-01-24 17:28:44
