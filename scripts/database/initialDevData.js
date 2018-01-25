@@ -1,7 +1,10 @@
-import UserDomain from 'src/models/user/userDomain';
-import UserModel from 'src/models/user/userModel';
-import RoleModel from 'src/models/role/roleModel';
-import RoleDomain from 'src/models/role/roleDomain';
+import {
+  UserRoleModel,
+  RoleDomain,
+  RoleModel,
+  UserModel,
+  UserDomain,
+} from 'src/models';
 
 const Accounts = [
   {
@@ -29,10 +32,12 @@ const Roles = [
   },
 ];
 
-const initialData = async () => {
+// 初始化权限数据
+const initialPrivilegeData = async () => {
   // table mock
   await UserModel.sync();
   await RoleModel.sync();
+  await UserRoleModel.sync();
 
   // insert data to table
   await Promise.all(Accounts.map(async (i) => {
@@ -42,10 +47,21 @@ const initialData = async () => {
   await Promise.all(Roles.map(async (i) => {
     await RoleDomain.create(i);
   }));
+
+  const allUsers = await UserModel.findAll();
+  const allRoles = await RoleModel.findAll();
+  if (allUsers && allRoles) {
+    await Promise.all(allUsers.map(async (user) => {
+      await user.setRoles(allRoles);
+    })).catch((e) => {
+      console.error(e);
+      process.exit(1);
+    });
+  }
 };
 
 const main = async () => {
-  await initialData();
+  await initialPrivilegeData();
   process.exit();
 };
 
@@ -53,4 +69,5 @@ try {
   main();
 } catch (e) {
   console.error(e);
+  process.exit(1);
 }

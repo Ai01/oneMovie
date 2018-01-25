@@ -13,6 +13,10 @@ class BaseDomain {
   static async destory(options) {
     await this.model.destory(options);
   }
+
+  static async update(options) {
+    await this.model.updatedAt(options);
+  }
 }
 
 export default BaseDomain;

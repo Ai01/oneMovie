@@ -29,7 +29,8 @@ CREATE TABLE `Role` (
   `desc` varchar(128) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `role_id_name` (`id`,`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,7 +40,7 @@ CREATE TABLE `Role` (
 
 LOCK TABLES `Role` WRITE;
 /*!40000 ALTER TABLE `Role` DISABLE KEYS */;
-INSERT INTO `Role` VALUES (1,'a','p1;p2',NULL,'2018-01-24 17:28:44','2018-01-24 17:28:44'),(2,'a','p3;p4',NULL,'2018-01-24 17:28:44','2018-01-24 17:28:44');
+INSERT INTO `Role` VALUES (1,'a','p1;p2',NULL,'2018-01-25 11:03:35','2018-01-25 11:03:35'),(2,'a','p3;p4',NULL,'2018-01-25 11:03:35','2018-01-25 11:03:35');
 /*!40000 ALTER TABLE `Role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +83,8 @@ CREATE TABLE `User` (
   `password` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id_phone` (`id`,`phone`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,8 +94,36 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'a@a.com','a','1111111111','a','2018-01-24 17:28:44','2018-01-24 17:28:44'),(2,'b@b.com','b','1111111112','b','2018-01-24 17:28:44','2018-01-24 17:28:44');
+INSERT INTO `User` VALUES (1,'a@a.com','a','1111111111','a','2018-01-25 11:03:35','2018-01-25 11:03:35'),(2,'b@b.com','b','1111111112','b','2018-01-25 11:03:35','2018-01-25 11:03:35');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `UserRole`
+--
+
+DROP TABLE IF EXISTS `UserRole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UserRole` (
+  `UserId` bigint(20) NOT NULL,
+  `RoleId` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`UserId`,`RoleId`),
+  UNIQUE KEY `UserRole_UserId_RoleId_unique` (`UserId`,`RoleId`),
+  KEY `user_role__user_id__role_id` (`UserId`,`RoleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UserRole`
+--
+
+LOCK TABLES `UserRole` WRITE;
+/*!40000 ALTER TABLE `UserRole` DISABLE KEYS */;
+INSERT INTO `UserRole` VALUES (1,1,'2018-01-25 11:03:35','2018-01-25 11:03:35'),(1,2,'2018-01-25 11:03:35','2018-01-25 11:03:35'),(2,1,'2018-01-25 11:03:35','2018-01-25 11:03:35'),(2,2,'2018-01-25 11:03:35','2018-01-25 11:03:35');
+/*!40000 ALTER TABLE `UserRole` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -105,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-24 17:28:44
+-- Dump completed on 2018-01-25 11:03:36

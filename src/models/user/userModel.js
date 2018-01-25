@@ -36,14 +36,15 @@ const User = sequelize.define(
       allowNull: false,
     },
   },
-  // {
-  //   indexes: [
-  //     {
-  //       unique: true,
-  //       fields: ['id', 'phone'],
-  //     },
-  //   ],
-  // },
+  {
+    indexes: [
+      {
+        unique: true,
+        fields: ['id', 'phone'],
+      },
+    ],
+  },
 );
+
 
 export default User;

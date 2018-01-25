@@ -22,6 +22,13 @@ const Role = sequelize.define('Role', {
     type: DataType.STRING(128),
     allowNull: true,
   },
+}, {
+  indexes: [
+    {
+      unique: true,
+      fields: ['id', 'name'],
+    },
+  ],
 });
 
 export default Role;
