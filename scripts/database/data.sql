@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `Privilege`
+--
+
+DROP TABLE IF EXISTS `Privilege`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Privilege` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Privilege`
+--
+
+LOCK TABLES `Privilege` WRITE;
+/*!40000 ALTER TABLE `Privilege` DISABLE KEYS */;
+INSERT INTO `Privilege` VALUES (1,'P-a','2018-01-25 17:05:27','2018-01-25 17:05:27'),(2,'P-b','2018-01-25 17:05:27','2018-01-25 17:05:27');
+/*!40000 ALTER TABLE `Privilege` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Role`
 --
 
@@ -23,9 +49,8 @@ DROP TABLE IF EXISTS `Role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
-  `privileges` varchar(1024) DEFAULT '',
   `desc` varchar(128) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
@@ -40,8 +65,36 @@ CREATE TABLE `Role` (
 
 LOCK TABLES `Role` WRITE;
 /*!40000 ALTER TABLE `Role` DISABLE KEYS */;
-INSERT INTO `Role` VALUES (1,'a','p1;p2',NULL,'2018-01-25 11:08:50','2018-01-25 11:08:50'),(2,'a','p3;p4',NULL,'2018-01-25 11:08:50','2018-01-25 11:08:50');
+INSERT INTO `Role` VALUES (1,'R-a',NULL,'2018-01-25 17:05:27','2018-01-25 17:05:27'),(2,'R-b',NULL,'2018-01-25 17:05:27','2018-01-25 17:05:27');
 /*!40000 ALTER TABLE `Role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `RolePrivilege`
+--
+
+DROP TABLE IF EXISTS `RolePrivilege`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `RolePrivilege` (
+  `RoleId` bigint(20) NOT NULL,
+  `PrivilegeId` bigint(20) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`RoleId`,`PrivilegeId`),
+  UNIQUE KEY `RolePrivilege_PrivilegeId_RoleId_unique` (`RoleId`,`PrivilegeId`),
+  KEY `role_privilege__role_id__privilege_id` (`RoleId`,`PrivilegeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `RolePrivilege`
+--
+
+LOCK TABLES `RolePrivilege` WRITE;
+/*!40000 ALTER TABLE `RolePrivilege` DISABLE KEYS */;
+INSERT INTO `RolePrivilege` VALUES (1,1,'2018-01-25 17:05:27','2018-01-25 17:05:27'),(1,2,'2018-01-25 17:05:27','2018-01-25 17:05:27'),(2,1,'2018-01-25 17:05:27','2018-01-25 17:05:27'),(2,2,'2018-01-25 17:05:27','2018-01-25 17:05:27');
+/*!40000 ALTER TABLE `RolePrivilege` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -94,7 +147,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'a@a.com','a','1111111111','a','2018-01-25 11:08:50','2018-01-25 11:08:50'),(2,'b@b.com','b','1111111112','b','2018-01-25 11:08:50','2018-01-25 11:08:50');
+INSERT INTO `User` VALUES (1,'a@a.com','U-a','1111111111','a','2018-01-25 17:05:27','2018-01-25 17:05:27'),(2,'b@b.com','U-b','1111111112','b','2018-01-25 17:05:27','2018-01-25 17:05:27');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,11 +160,11 @@ DROP TABLE IF EXISTS `UserRole`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UserRole` (
   `UserId` bigint(20) NOT NULL,
-  `RoleId` int(11) NOT NULL,
+  `RoleId` bigint(20) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`UserId`,`RoleId`),
-  UNIQUE KEY `UserRole_UserId_RoleId_unique` (`UserId`,`RoleId`),
+  UNIQUE KEY `UserRole_RoleId_UserId_unique` (`UserId`,`RoleId`),
   KEY `user_role__user_id__role_id` (`UserId`,`RoleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -122,7 +175,7 @@ CREATE TABLE `UserRole` (
 
 LOCK TABLES `UserRole` WRITE;
 /*!40000 ALTER TABLE `UserRole` DISABLE KEYS */;
-INSERT INTO `UserRole` VALUES (1,1,'2018-01-25 11:08:50','2018-01-25 11:08:50'),(1,2,'2018-01-25 11:08:50','2018-01-25 11:08:50'),(2,1,'2018-01-25 11:08:50','2018-01-25 11:08:50'),(2,2,'2018-01-25 11:08:50','2018-01-25 11:08:50');
+INSERT INTO `UserRole` VALUES (1,1,'2018-01-25 17:05:27','2018-01-25 17:05:27'),(1,2,'2018-01-25 17:05:27','2018-01-25 17:05:27'),(2,1,'2018-01-25 17:05:27','2018-01-25 17:05:27'),(2,2,'2018-01-25 17:05:27','2018-01-25 17:05:27');
 /*!40000 ALTER TABLE `UserRole` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -135,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-25 11:08:50
+-- Dump completed on 2018-01-25 17:05:27

@@ -3,22 +3,22 @@ import sequelize from '../sequelize';
 
 const { BIGINT, INTEGER } = DataTypes;
 
-const UserRole = sequelize.define('UserRole', {
-  UserId: {
+const RolePrivilege = sequelize.define('RolePrivilege', {
+  RoleId: {
     type: BIGINT,
     allowNull: false,
   },
 
-  RoleId: {
+  PrivilegeId: {
     type: INTEGER,
     allowNull: false,
   },
 }, {
   indexes: [
     {
-      fields: ['UserId', 'RoleId'],
+      fields: ['RoleId', 'PrivilegeId'],
     },
   ],
 });
 
-export default UserRole;
+export default RolePrivilege;

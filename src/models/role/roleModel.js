@@ -1,23 +1,18 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../sequelize';
 
-const { STRING } = DataTypes;
+const { STRING, BIGINT } = DataTypes;
 
 const Role = sequelize.define('Role', {
+  id: {
+    type: BIGINT,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+
   name: {
     type: STRING(32),
     allowNull: false,
-  },
-
-  privileges: {
-    type: STRING(1024),
-    defaultValue: '',
-    get() {
-      return this.getDataValue('privileges').split(';');
-    },
-    set(val) {
-      this.setDataValue('privileges', val.join(';'));
-    },
   },
 
   desc: {

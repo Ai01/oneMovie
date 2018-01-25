@@ -14,7 +14,7 @@ class PrivilegeDomain extends BaseDomain {
     });
 
     if (u) {
-      throw new Error('此手机号已经存在，请检查');
+      throw new Error('此权限已经存在，请检查');
     }
 
     await super.create(
