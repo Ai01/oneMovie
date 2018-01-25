@@ -48,8 +48,8 @@ const initialPrivilegeData = async () => {
     await RoleDomain.create(i);
   }));
 
-  const allUsers = await UserModel.findAll();
-  const allRoles = await RoleModel.findAll();
+  const allUsers = await UserDomain.findAll();
+  const allRoles = await RoleDomain.findAll();
   if (allUsers && allRoles) {
     await Promise.all(allUsers.map(async (user) => {
       await user.setRoles(allRoles);

@@ -6,6 +6,11 @@ class BaseDomain {
     return instance;
   }
 
+  static async findAll(options) {
+    const allData = await this.model.findAll(options);
+    return allData;
+  }
+
   static async create(value, options) {
     await this.model.create(value, options);
   }
