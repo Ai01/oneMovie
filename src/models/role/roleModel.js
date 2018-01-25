@@ -1,14 +1,16 @@
-import DataType from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../sequelize';
+
+const { STRING } = DataTypes;
 
 const Role = sequelize.define('Role', {
   name: {
-    type: DataType.STRING(32),
+    type: STRING(32),
     allowNull: false,
   },
 
   privileges: {
-    type: DataType.STRING(1024),
+    type: STRING(1024),
     defaultValue: '',
     get() {
       return this.getDataValue('privileges').split(';');
@@ -19,7 +21,7 @@ const Role = sequelize.define('Role', {
   },
 
   desc: {
-    type: DataType.STRING(128),
+    type: STRING(128),
     allowNull: true,
   },
 }, {

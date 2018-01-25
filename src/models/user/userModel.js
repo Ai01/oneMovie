@@ -1,38 +1,33 @@
-import DataType from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../sequelize';
+
+const { BIGINT, STRING } = DataTypes;
 
 const User = sequelize.define(
   'User',
   {
-    type: {
-      type: new DataType.VIRTUAL(DataType.STRING),
-      get() {
-        return 'UserType';
-      },
-    },
-
     id: {
-      type: DataType.BIGINT,
+      type: BIGINT,
       primaryKey: true,
       autoIncrement: true,
     },
 
     email: {
-      type: DataType.STRING,
+      type: STRING,
     },
 
     name: {
-      type: DataType.STRING,
+      type: STRING,
       allowNull: false,
     },
 
     phone: {
-      type: DataType.STRING,
+      type: STRING,
       allowNull: false,
     },
 
     password: {
-      type: DataType.STRING,
+      type: STRING,
       allowNull: false,
     },
   },
