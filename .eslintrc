@@ -7,6 +7,7 @@
   },
   "rules": {
     "max-len": [1, 150],
+    "no-return-await": "off",
     "import/extensions": [
       2,
       {

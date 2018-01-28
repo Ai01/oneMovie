@@ -20,7 +20,7 @@ class UserDomain extends BaseDomain {
       throw new Error('此手机号已经存在，请检查');
     }
 
-    await super.create(
+    return await super.create(
       {
         name,
         password: hash(password),
@@ -32,7 +32,7 @@ class UserDomain extends BaseDomain {
     );
   }
 
-  static async findUseByNameAndPassword(userName, password) {
+  static async findUserByNameAndPassword(userName, password) {
     const UserInDatabase = UserDomain.findOne({
       where: {
         password: hash(password),
@@ -40,6 +40,26 @@ class UserDomain extends BaseDomain {
       },
     });
     return UserInDatabase;
+  }
+
+  static async updateUser(userData) {
+    const { userInfo, userId } = userData;
+    if (!userId) {
+      throw new Error('没有useId');
+    }
+    if (!userInfo) {
+      return await UserDomain.findOne({
+        where: {
+          id: userId,
+        },
+      });
+    }
+
+    return await UserDomain.update(userInfo, {
+      where: {
+        id: userId,
+      },
+    });
   }
 }
 

@@ -2,25 +2,23 @@ class BaseDomain {
   static model;
 
   static async findOne(options) {
-    const instance = await this.model.findOne(options);
-    return instance;
+    return await this.model.findOne(options);
   }
 
   static async findAll(options) {
-    const allData = await this.model.findAll(options);
-    return allData;
+    return await this.model.findAll(options);
   }
 
   static async create(value, options) {
-    await this.model.create(value, options);
+    return await this.model.create(value, options);
   }
 
-  static async destory(options) {
-    await this.model.destory(options);
+  static async destroy(options) {
+    await this.model.destroy(options);
   }
 
-  static async update(options) {
-    await this.model.updatedAt(options);
+  static async update(value, options) {
+    return await this.model.update(value, options);
   }
 }
 
