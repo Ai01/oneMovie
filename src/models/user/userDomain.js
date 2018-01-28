@@ -1,3 +1,4 @@
+import hash from 'src/utils/myCrypto';
 import BaseDomain from '../base/baseDomain';
 import UserModel from './userModel';
 
@@ -22,13 +23,23 @@ class UserDomain extends BaseDomain {
     await super.create(
       {
         name,
-        password,
+        password: hash(password),
         phone,
         email,
         status: 'active',
       },
       options,
     );
+  }
+
+  static async findUseByNameAndPassword(userName, password) {
+    const UserInDatabase = UserDomain.findOne({
+      where: {
+        password: hash(password),
+        name: userName,
+      },
+    });
+    return UserInDatabase;
   }
 }
 
