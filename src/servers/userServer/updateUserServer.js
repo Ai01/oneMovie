@@ -6,6 +6,8 @@ const updateUserServer = async (ctx) => {
   const { body } = request;
   const { userInfo } = body;
 
+  // TODO:bai userInfo判断
+
   const newUserInstance = await UserDomain.updateUser({
     userInfo,
     userId,

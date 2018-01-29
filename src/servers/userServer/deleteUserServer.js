@@ -2,6 +2,7 @@ import { UserDomain } from 'src/domains';
 
 const deleteUserServer = async (ctx) => {
   const { id: userId } = ctx.params;
+  // TODO:bai user判断
   await UserDomain.destroy({
     where: {
       id: userId,

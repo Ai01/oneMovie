@@ -1,5 +1,6 @@
 import { privilegeServer, createUserServer, deleteUserServer, updateUserServer } from 'src/servers';
 
+// TODO:bai 这种写法很奇怪
 const userController = {};
 
 userController.createUser = async (ctx) => {
