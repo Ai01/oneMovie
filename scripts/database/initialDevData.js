@@ -1,13 +1,16 @@
 import {
   UserRoleModel,
-  RoleDomain,
   RoleModel,
   UserModel,
-  UserDomain,
   PrivilegeModel,
-  PrivilegeDomain,
   RolePrivilegeModel,
 } from 'src/models';
+
+import {
+  RoleDomain,
+  UserDomain,
+  PrivilegeDomain,
+} from 'src/domains';
 
 const Accounts = [
   {
@@ -35,21 +38,34 @@ const Roles = [
 
 const Privileges = [
   {
-    name: 'P-a',
+    name: 'create_user',
   },
   {
-    name: 'P-b',
+    name: 'update_user',
+  },
+  {
+    name: 'delete_user',
   },
 ];
 
 // 初始化权限数据
 const initialPrivilegeData = async () => {
   // create table
-  await UserModel.sync();
-  await RoleModel.sync();
-  await UserRoleModel.sync();
-  await PrivilegeModel.sync();
-  await RolePrivilegeModel.sync();
+  await UserModel.sync({
+    force: true,
+  });
+  await RoleModel.sync({
+    force: true,
+  });
+  await UserRoleModel.sync({
+    force: true,
+  });
+  await PrivilegeModel.sync({
+    force: true,
+  });
+  await RolePrivilegeModel.sync({
+    force: true,
+  });
 
   // create users
   await Promise.all(Accounts.map(async (i) => {

@@ -1,11 +1,14 @@
 import hash from 'src/utils/myCrypto';
+import { UserModel } from 'src/models';
 import BaseDomain from '../base/baseDomain';
-import UserModel from './userModel';
 
 class UserDomain extends BaseDomain {
   static model = UserModel;
 
   static async create(account, options) {
+    if (!account) {
+      throw new Error('没有用户信息');
+    }
     const {
       name, password, phone, email,
     } = account;
@@ -60,6 +63,24 @@ class UserDomain extends BaseDomain {
         id: userId,
       },
     });
+  }
+
+  static async getRoles(userInstance) {
+    return await userInstance.getRoles();
+  }
+
+  static async getPrivileges(userInstance) {
+    const allPrivileges = [];
+    const roles = await UserDomain.getRoles(userInstance);
+    const rolesPrivileges = await Promise.all(roles.map(async role => await role.getPrivileges()));
+    rolesPrivileges.forEach((ps) => {
+      ps.forEach((p) => {
+        if (allPrivileges.indexOf(p && p.name) === -1) {
+          allPrivileges.push(p && p.name);
+        }
+      });
+    });
+    return allPrivileges.filter(i => !!i);
   }
 }
 

@@ -2,7 +2,7 @@ import Koa from 'koa';
 import cors from '@koa/cors';
 import bodyParser from 'koa-bodyparser';
 import session from 'koa-session';
-import router from 'src/routers';
+import router from 'src/controllers';
 import { SessionConfig } from './configs/session';
 
 const app = new Koa();

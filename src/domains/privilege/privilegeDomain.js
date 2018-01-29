@@ -1,5 +1,5 @@
+import { PrivilegeModel } from 'src/models';
 import BaseDomain from '../base/baseDomain';
-import PrivilegeModel from './privilegeModel';
 
 class PrivilegeDomain extends BaseDomain {
   static model = PrivilegeModel

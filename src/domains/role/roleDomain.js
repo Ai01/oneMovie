@@ -1,4 +1,4 @@
-import RoleModel from './roleModel';
+import { RoleModel } from 'src/models';
 import BaseDomain from '../base/baseDomain';
 
 class RoleDomain extends BaseDomain {

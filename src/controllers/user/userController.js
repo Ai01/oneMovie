@@ -1,67 +1,34 @@
-import { UserDomain } from 'src/models';
+import { privilegeServer, createUserServer, deleteUserServer, updateUserServer } from 'src/servers';
 
 const userController = {};
-userController.userExistVerify = async (ctx) => {
-  const { request } = ctx;
-  const { body } = request;
-  const { userName, password } = body;
-  const UserInDatabase = await UserDomain.findUserByNameAndPassword(userName, password);
-  if (UserInDatabase) {
-    ctx.body = {
-      session: 'success',
-    };
-  } else {
-    ctx.throw(401, 'access_denied', { user: UserInDatabase });
-  }
-};
 
 userController.createUser = async (ctx) => {
-  const { request } = ctx;
-  const { body } = request;
-  const { userInfo } = body;
-  const newUserInstance = await UserDomain.create(userInfo);
-  if (newUserInstance) {
-    ctx.body = {
-      user: newUserInstance,
-    };
-  } else {
-    ctx.throw(500);
+  const hasCreateUserPrivilegeOrNot = await privilegeServer(ctx, ['create_user']);
+  if (!hasCreateUserPrivilegeOrNot) {
+    ctx.throw(400, '你没有创建用户的权限');
   }
+
+  await createUserServer(ctx);
 };
 
 // TODO:bai批量删除怎么写？
 // TODO:bai delete应该用body吗？
 userController.deleteUser = async (ctx) => {
-  const { id: userId } = ctx.params;
-  await UserDomain.destroy({
-    where: {
-      id: userId,
-    },
-  }).then(() => {
-    ctx.body = {
-      message: '删除成功',
-    };
-  });
+  const hasCreateUserPrivilegeOrNot = await privilegeServer(ctx, ['delete_user']);
+  if (!hasCreateUserPrivilegeOrNot) {
+    ctx.throw(400, '你没有删除用户的权限');
+  }
+
+  await deleteUserServer(ctx);
 };
 
 userController.updateUser = async (ctx) => {
-  const { request, params } = ctx;
-  const { id: userId } = params;
-  const { body } = request;
-  const { userInfo } = body;
-
-  const newUserInstance = await UserDomain.updateUser({
-    userInfo,
-    userId,
-  });
-
-  if (newUserInstance) {
-    ctx.body = {
-      result: newUserInstance[0] === 1,
-    };
-  } else {
-    ctx.throw(500);
+  const hasCreateUserPrivilegeOrNot = await privilegeServer(ctx, ['update_user']);
+  if (!hasCreateUserPrivilegeOrNot) {
+    ctx.throw(400, '你没有更新用户的权限');
   }
+
+  await updateUserServer(ctx);
 };
 
 export default userController;

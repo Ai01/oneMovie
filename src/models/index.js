@@ -1,15 +1,9 @@
-import RoleDomain from './role/roleDomain';
-import RoleModel from './role/roleModel';
-
-import UserDomain from './user/userDomain';
 import UserModel from './user/userModel';
-
-import UserRoleModel from './userRole/userRoleModel';
-
+import RoleModel from './role/roleModel';
 import PrivilegeModel from './privilege/privilegeModel';
-import PrivilegeDomain from './privilege/privilegeDomain';
-
+import UserRoleModel from './userRole/userRoleModel';
 import RolePrivilegeModel from './rolePrivilege/rolePrivilegeModel';
+
 
 UserModel.belongsToMany(RoleModel, {
   through: UserRoleModel,
@@ -31,14 +25,10 @@ PrivilegeModel.belongsToMany(RoleModel, {
   constraints: false,
 });
 
-
 export {
   UserModel,
   RoleModel,
-  RoleDomain,
-  UserDomain,
   UserRoleModel,
   PrivilegeModel,
-  PrivilegeDomain,
   RolePrivilegeModel,
 };

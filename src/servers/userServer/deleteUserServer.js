@@ -1,0 +1,16 @@
+import { UserDomain } from 'src/domains';
+
+const deleteUserServer = async (ctx) => {
+  const { id: userId } = ctx.params;
+  await UserDomain.destroy({
+    where: {
+      id: userId,
+    },
+  }).then(() => {
+    ctx.body = {
+      message: '删除成功',
+    };
+  });
+};
+
+export default deleteUserServer;
