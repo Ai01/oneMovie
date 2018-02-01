@@ -1,6 +1,7 @@
 import Router from 'koa-router';
 import { loginServer } from 'src/servers';
 import UserController from './user/userController';
+import RoleController from './role/roleController';
 
 const router = new Router();
 
@@ -8,9 +9,13 @@ router.get('/', async (ctx) => {
   ctx.body = 'hello oneMovie';
 });
 
+// token (login)
+
 router.post('/token', async (ctx) => {
   await loginServer(ctx);
 });
+
+// user
 
 router.post('/user', async (ctx) => {
   await UserController.createUser(ctx);
@@ -28,6 +33,21 @@ router.put('/user/:id', async (ctx) => {
 // client提供部分改变的属性
 router.patch('/user/:id', async (ctx) => {
   await UserController.updateUser(ctx);
+});
+
+
+// role
+
+router.post('/role', async (ctx) => {
+  await RoleController.createRole(ctx);
+});
+
+router.delete('/role/:id', async (ctx) => {
+  await RoleController.deleteRole(ctx);
+});
+
+router.put('/role/:id', async (ctx) => {
+  await RoleController.updateRole(ctx);
 });
 
 export default router;

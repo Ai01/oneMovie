@@ -4,8 +4,8 @@ import BaseDomain from '../base/baseDomain';
 class RoleDomain extends BaseDomain {
   static model = RoleModel;
 
-  static async create(account, options) {
-    const { name, privileges } = account;
+  static async create(role, options) {
+    const { name, privileges } = role;
     const u = await RoleDomain.findOne({
       where: {
         name,
@@ -17,7 +17,7 @@ class RoleDomain extends BaseDomain {
       throw new Error('此角色已经存在，请检查');
     }
 
-    await super.create(
+    return await super.create(
       {
         name,
         privileges,

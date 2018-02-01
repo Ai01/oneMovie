@@ -4,6 +4,11 @@ export createUserServer from './userServer/createUserServer';
 export deleteUserServer from './userServer/deleteUserServer';
 export updateUserServer from './userServer/updateUserServer';
 
+// role
+export deleteRoleServer from './roleServer/deleteRoleServer';
+export createRoleServer from './roleServer/createRoleServer';
+export updateRoleServer from './roleServer/updateRoleServer';
+
 // privilege
 export privilegeServer from './privilegeServer/privilegeServer';
 

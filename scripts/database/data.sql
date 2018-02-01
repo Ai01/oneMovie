@@ -37,7 +37,7 @@ CREATE TABLE `Privilege` (
 
 LOCK TABLES `Privilege` WRITE;
 /*!40000 ALTER TABLE `Privilege` DISABLE KEYS */;
-INSERT INTO `Privilege` VALUES (1,'create_user','2018-01-29 14:54:09','2018-01-29 14:54:09'),(2,'update_user','2018-01-29 14:54:09','2018-01-29 14:54:09'),(3,'delete_user','2018-01-29 14:54:09','2018-01-29 14:54:09');
+INSERT INTO `Privilege` VALUES (1,'create_user','2018-02-01 11:48:49','2018-02-01 11:48:49'),(2,'update_user','2018-02-01 11:48:49','2018-02-01 11:48:49'),(3,'delete_user','2018-02-01 11:48:49','2018-02-01 11:48:49');
 /*!40000 ALTER TABLE `Privilege` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ CREATE TABLE `Role` (
 
 LOCK TABLES `Role` WRITE;
 /*!40000 ALTER TABLE `Role` DISABLE KEYS */;
-INSERT INTO `Role` VALUES (1,'R-a',NULL,'2018-01-29 14:54:09','2018-01-29 14:54:09'),(2,'R-b',NULL,'2018-01-29 14:54:09','2018-01-29 14:54:09');
+INSERT INTO `Role` VALUES (1,'R-a',NULL,'2018-02-01 11:48:49','2018-02-01 11:48:49'),(2,'R-b',NULL,'2018-02-01 11:48:49','2018-02-01 11:48:49');
 /*!40000 ALTER TABLE `Role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +83,10 @@ CREATE TABLE `RolePrivilege` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`RoleId`,`PrivilegeId`),
   UNIQUE KEY `RolePrivilege_PrivilegeId_RoleId_unique` (`RoleId`,`PrivilegeId`),
-  KEY `role_privilege__role_id__privilege_id` (`RoleId`,`PrivilegeId`)
+  KEY `PrivilegeId` (`PrivilegeId`),
+  KEY `role_privilege__role_id__privilege_id` (`RoleId`,`PrivilegeId`),
+  CONSTRAINT `RolePrivilege_ibfk_1` FOREIGN KEY (`RoleId`) REFERENCES `Role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `RolePrivilege_ibfk_2` FOREIGN KEY (`PrivilegeId`) REFERENCES `Privilege` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -93,7 +96,7 @@ CREATE TABLE `RolePrivilege` (
 
 LOCK TABLES `RolePrivilege` WRITE;
 /*!40000 ALTER TABLE `RolePrivilege` DISABLE KEYS */;
-INSERT INTO `RolePrivilege` VALUES (1,1,'2018-01-29 14:54:10','2018-01-29 14:54:10'),(1,2,'2018-01-29 14:54:10','2018-01-29 14:54:10'),(1,3,'2018-01-29 14:54:10','2018-01-29 14:54:10'),(2,1,'2018-01-29 14:54:10','2018-01-29 14:54:10'),(2,2,'2018-01-29 14:54:10','2018-01-29 14:54:10'),(2,3,'2018-01-29 14:54:10','2018-01-29 14:54:10');
+INSERT INTO `RolePrivilege` VALUES (1,1,'2018-02-01 11:48:50','2018-02-01 11:48:50'),(1,2,'2018-02-01 11:48:50','2018-02-01 11:48:50'),(1,3,'2018-02-01 11:48:50','2018-02-01 11:48:50'),(2,1,'2018-02-01 11:48:50','2018-02-01 11:48:50'),(2,2,'2018-02-01 11:48:50','2018-02-01 11:48:50'),(2,3,'2018-02-01 11:48:50','2018-02-01 11:48:50');
 /*!40000 ALTER TABLE `RolePrivilege` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +150,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'a@a.com','U-a','1111111111','ypeBEsobvcr6wjGzmiPcTaeG7/gUfE5yuYB3ha/uSLs=','2018-01-29 14:54:09','2018-01-29 14:54:09'),(2,'b@b.com','U-b','1111111112','PiPoFgA5WUoziU9lZOGxNIu9egCI1CxKy3PurtWcAJ0=','2018-01-29 14:54:09','2018-01-29 14:54:09');
+INSERT INTO `User` VALUES (1,'a@a.com','U-a','1111111111','ypeBEsobvcr6wjGzmiPcTaeG7/gUfE5yuYB3ha/uSLs=','2018-02-01 11:48:49','2018-02-01 11:48:49'),(2,'b@b.com','U-b','1111111112','PiPoFgA5WUoziU9lZOGxNIu9egCI1CxKy3PurtWcAJ0=','2018-02-01 11:48:49','2018-02-01 11:48:49');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +168,10 @@ CREATE TABLE `UserRole` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`UserId`,`RoleId`),
   UNIQUE KEY `UserRole_RoleId_UserId_unique` (`UserId`,`RoleId`),
-  KEY `user_role__user_id__role_id` (`UserId`,`RoleId`)
+  KEY `RoleId` (`RoleId`),
+  KEY `user_role__user_id__role_id` (`UserId`,`RoleId`),
+  CONSTRAINT `UserRole_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `UserRole_ibfk_2` FOREIGN KEY (`RoleId`) REFERENCES `Role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -175,7 +181,7 @@ CREATE TABLE `UserRole` (
 
 LOCK TABLES `UserRole` WRITE;
 /*!40000 ALTER TABLE `UserRole` DISABLE KEYS */;
-INSERT INTO `UserRole` VALUES (1,1,'2018-01-29 14:54:10','2018-01-29 14:54:10'),(1,2,'2018-01-29 14:54:10','2018-01-29 14:54:10'),(2,1,'2018-01-29 14:54:10','2018-01-29 14:54:10'),(2,2,'2018-01-29 14:54:10','2018-01-29 14:54:10');
+INSERT INTO `UserRole` VALUES (1,1,'2018-02-01 11:48:49','2018-02-01 11:48:49'),(1,2,'2018-02-01 11:48:49','2018-02-01 11:48:49'),(2,1,'2018-02-01 11:48:49','2018-02-01 11:48:49'),(2,2,'2018-02-01 11:48:49','2018-02-01 11:48:49');
 /*!40000 ALTER TABLE `UserRole` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -188,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-29 14:54:10
+-- Dump completed on 2018-02-01 11:48:50
