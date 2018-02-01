@@ -20,6 +20,14 @@ class BaseDomain {
   static async update(value, options) {
     return await this.model.update(value, options);
   }
+
+
+  static async findById(id, options) {
+    if (!id) {
+      return null;
+    }
+    return await this.model.findById(id, options);
+  }
 }
 
 export default BaseDomain;

@@ -45,12 +45,12 @@ class UserDomain extends BaseDomain {
     return UserInDatabase;
   }
 
-  static async updateUser(userData) {
-    const { userInfo, userId } = userData;
+  static async updateUser(userData, options) {
+    const { userId, ...rest } = userData;
     if (!userId) {
       throw new Error('没有useId');
     }
-    if (!userInfo) {
+    if (!rest) {
       return await UserDomain.findOne({
         where: {
           id: userId,
@@ -58,7 +58,8 @@ class UserDomain extends BaseDomain {
       });
     }
 
-    return await UserDomain.update(userInfo, {
+    return await UserDomain.update(rest, {
+      ...options,
       where: {
         id: userId,
       },
