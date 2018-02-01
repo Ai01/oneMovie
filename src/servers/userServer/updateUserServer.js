@@ -7,7 +7,6 @@ const updateUserServer = async (ctx) => {
   const { body } = request;
   const { userInfo } = body;
 
-  // TODO:bai userInfo判断
   // 如果userInfo中里面有roleIds。那么需要调用addRoles
 
   const oldUserInstance = await UserDomain.findById(userId);
