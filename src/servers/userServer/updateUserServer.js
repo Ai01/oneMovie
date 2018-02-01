@@ -10,6 +10,12 @@ const updateUserServer = async (ctx) => {
   // TODO:bai userInfo判断
   // 如果userInfo中里面有roleIds。那么需要调用addRoles
 
+  const oldUserInstance = await UserDomain.findById(userId);
+
+  if (!oldUserInstance) {
+    ctx.throw(400, '用户不存在');
+  }
+
   const { roleIds, ...rest } = userInfo;
   let newUserInstance;
   if (roleIds && Array.isArray(roleIds) && roleIds.length) {
@@ -22,7 +28,10 @@ const updateUserServer = async (ctx) => {
         transaction,
       });
 
-      newUserInstance = await UserDomain.findById(userId);
+      newUserInstance = await UserDomain.findById(userId, {
+        transaction,
+      });
+
 
       // 重新set
       await newUserInstance.setRoles(roleIds, {
