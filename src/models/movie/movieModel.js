@@ -1,7 +1,9 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../sequelize';
 
-const { BIGINT, STRING, DATE } = DataTypes;
+const {
+  BIGINT, STRING, DATE, FLOAT,
+} = DataTypes;
 
 const Movie = sequelize.define(
   'Movie', {
@@ -16,9 +18,14 @@ const Movie = sequelize.define(
       allowNull: false,
     },
 
+    grade: {
+      type: FLOAT,
+      allowNull: true,
+    },
+
     resourceLink: {
       type: STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
     releaseDate: {
