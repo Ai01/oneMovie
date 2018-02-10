@@ -21,7 +21,6 @@ class BaseDomain {
     return await this.model.update(value, options);
   }
 
-
   static async findById(id, options) {
     if (!id) {
       return null;

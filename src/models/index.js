@@ -3,6 +3,7 @@ import RoleModel from './role/roleModel';
 import PrivilegeModel from './privilege/privilegeModel';
 import UserRoleModel from './userRole/userRoleModel';
 import RolePrivilegeModel from './rolePrivilege/rolePrivilegeModel';
+import MovieModel from './movie/movieModel';
 
 
 UserModel.belongsToMany(RoleModel, {
@@ -27,4 +28,5 @@ export {
   UserRoleModel,
   PrivilegeModel,
   RolePrivilegeModel,
+  MovieModel,
 };

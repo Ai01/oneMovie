@@ -29,7 +29,6 @@ class UserDomain extends BaseDomain {
         password: hash(password),
         phone,
         email,
-        status: 'active',
       },
       options,
     );
