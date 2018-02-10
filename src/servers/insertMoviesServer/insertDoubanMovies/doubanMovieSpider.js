@@ -19,7 +19,7 @@ const getDataFromHtml = (htmlCode) => {
       name: $('.title', this).text(),
       grade: $('.star .rating_num', this).text(),
       resourceLink: $('a', this).attr('href'),
-      pictureUrl: $('.pic img', this).attr('src'),
+      posterUrl: $('.pic img', this).attr('src'),
     };
     movies.push(movie);
   });
