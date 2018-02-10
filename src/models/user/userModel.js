@@ -22,7 +22,10 @@ const User = sequelize.define(
     },
 
     phone: {
-      type: STRING,
+      type: STRING(11),
+      validate: {
+        len: 11,
+      },
       allowNull: false,
     },
 
@@ -35,7 +38,7 @@ const User = sequelize.define(
     indexes: [
       {
         unique: true,
-        fields: ['id', 'phone'],
+        fields: ['phone'],
       },
     ],
   },

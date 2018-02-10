@@ -15,4 +15,8 @@ export privilegeServer from './privilegeServer/privilegeServer';
 // login
 export loginServer from './loginServer/loginServer';
 
+// movies
+
+export inserDoubanMovies from './insertMoviesServer/insertDoubanMovies/doubanMovieSpider';
+
 export default 'dummy';
