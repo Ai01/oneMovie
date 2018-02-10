@@ -14,25 +14,25 @@ import {
 
 const Accounts = [
   {
-    name: 'U-a',
-    password: 'a',
-    phone: '1111111111',
-    email: 'a@a.com',
+    name: 'root',
+    password: 'admin',
+    phone: '11111111111',
+    email: 'root@root.com',
   },
   {
-    name: 'U-b',
-    password: 'b',
-    phone: '1111111112',
-    email: 'b@b.com',
+    name: 'test',
+    password: 'test',
+    phone: '11111111112',
+    email: 'test@test.com',
   },
 ];
 
 const Roles = [
   {
-    name: 'R-a',
+    name: 'admin',
   },
   {
-    name: 'R-b',
+    name: 'guest',
   },
 ];
 
