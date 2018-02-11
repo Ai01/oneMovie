@@ -2,6 +2,7 @@ import Router from 'koa-router';
 import { loginServer } from 'src/servers';
 import UserController from './user/userController';
 import RoleController from './role/roleController';
+import MovieController from './movie/movieController';
 
 const router = new Router();
 
@@ -48,6 +49,11 @@ router.delete('/role/:id', async (ctx) => {
 
 router.put('/role/:id', async (ctx) => {
   await RoleController.updateRole(ctx);
+});
+
+// movie
+router.get('/movies', async (ctx) => {
+  await MovieController.getMovies(ctx);
 });
 
 export default router;

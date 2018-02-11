@@ -15,7 +15,7 @@ import {
 } from 'src/domains';
 
 import {
-  inserDoubanMovies,
+  insertDoubanMovies,
 } from 'src/servers';
 
 import {
@@ -91,10 +91,7 @@ const initialMoviesData = async () => {
     force: true,
   });
 
-  await inserDoubanMovies();
-
-  // insert movies
-  // await Promise.all(Movies.map(async m => await MovieDomain.create(m)));
+  await insertDoubanMovies();
 };
 
 const main = async () => {

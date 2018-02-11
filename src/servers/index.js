@@ -17,6 +17,7 @@ export loginServer from './loginServer/loginServer';
 
 // movies
 
-export inserDoubanMovies from './insertMoviesServer/insertDoubanMovies/doubanMovieSpider';
+export insertDoubanMovies from './moviesSpiderServer/insertDoubanMovies/doubanMovieSpider';
+export getMoviesServer from './movieServer/getMoviesServer';
 
 export default 'dummy';
