@@ -27,6 +27,10 @@ class BaseDomain {
     }
     return await this.model.findById(id, options);
   }
+
+  static async count(options) {
+    return await this.model.count(options);
+  }
 }
 
 export default BaseDomain;

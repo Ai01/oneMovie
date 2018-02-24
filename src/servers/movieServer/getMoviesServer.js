@@ -13,9 +13,12 @@ const getMoviesServer = async (ctx) => {
     limit: DEFAULT_PAGE_SIZE,
   });
 
+  const moviesTotalAmount = await MovieDomain.count({});
+
   if (movies) {
     ctx.body = {
       movies,
+      moviesTotalAmount,
     };
   } else {
     ctx.throw(500, '获取电影失败，发生未知错误');
