@@ -8,9 +8,12 @@ import { SessionConfig } from './configs/session';
 const app = new Koa();
 
 // cors
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4000',
+  credentials: true,
+}));
 
-// body praser
+// body parser
 app.use(bodyParser({
   onerror: (err, ctx) => {
     ctx.throw('body parse error', 422);

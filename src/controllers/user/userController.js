@@ -1,10 +1,10 @@
 import { privilegeServer, createUserServer, deleteUserServer, updateUserServer } from 'src/servers';
 
 const createUser = async (ctx) => {
-  const hasCreateUserPrivilegeOrNot = await privilegeServer(ctx, ['create_user']);
-  if (!hasCreateUserPrivilegeOrNot) {
-    ctx.throw(400, '你没有创建用户的权限');
-  }
+  // const hasCreateUserPrivilegeOrNot = await privilegeServer(ctx, ['create_user']);
+  // if (!hasCreateUserPrivilegeOrNot) {
+  //   ctx.throw(400, '你没有创建用户的权限');
+  // }
 
   await createUserServer(ctx);
 };

@@ -6,6 +6,10 @@ import { UserDomain } from 'src/domains';
 *  privilegeForAction: [操作权限]
 *  返回值是 boolean
 * */
+
+
+// TODO:bai 权限服务应该拆分为登录判断等各个权限的判断，而不是现在这样的笼统
+
 const privilegeServer = async (ctx, privilegeForAction) => {
   const { session } = ctx;
   const { userId } = session;
