@@ -1,4 +1,7 @@
 
+// mail
+export sendMailServer from "./mailServer/sendMail";
+
 // user
 export createUserServer from './userServer/createUserServer';
 export deleteUserServer from './userServer/deleteUserServer';
@@ -16,8 +19,8 @@ export privilegeServer from './privilegeServer/privilegeServer';
 export loginServer from './loginServer/loginServer';
 
 // movies
-
 export insertDoubanMovies from './moviesSpiderServer/insertDoubanMovies/doubanMovieSpider';
 export getMoviesServer from './movieServer/getMoviesServer';
+
 
 export default 'dummy';

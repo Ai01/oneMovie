@@ -4,6 +4,7 @@ import config from 'src/configs/sequelize';
 
 const sequelizeDefaultOptions = {
   host: config.host,
+  port: config.port,
   define: {
     freezeTableName: true,
   },

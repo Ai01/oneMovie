@@ -1,4 +1,4 @@
-import { privilegeServer, createUserServer, deleteUserServer, updateUserServer } from 'src/servers';
+import { privilegeServer, createUserServer, deleteUserServer, updateUserServer, sendMailServer } from 'src/servers';
 
 const createUser = async (ctx) => {
   // const hasCreateUserPrivilegeOrNot = await privilegeServer(ctx, ['create_user']);
@@ -7,6 +7,7 @@ const createUser = async (ctx) => {
   // }
 
   await createUserServer(ctx);
+  await sendMailServer({ content: 'test', sendMailTo: 'baihaihui131225@gmail.com'});
 };
 
 // TODO:bai批量删除怎么写？

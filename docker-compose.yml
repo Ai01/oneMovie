@@ -1,0 +1,20 @@
+# 开发环境准备
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    ports:
+    - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'admin'
+    restart: always
+  rabbitMQ:
+    image: rabbitmq:latest
+    ports:
+    - "5672:5672"
+    restart: always
+  elasticSearch:
+    image: elasticsearch:latest
+    ports:
+      - "3309:9200"
+    restart: always
