@@ -1,0 +1,79 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2018-03-20T15:58:57.972Z",
+    "end": "2018-03-20T15:58:58.573Z",
+    "duration": 601,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "432619c2-2d0e-4714-9ea1-1333c46028cc",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "b2441122-7171-4dd7-8ec7-323254245222",
+        "title": "loging test",
+        "fullFile": "/Users/baihaihui/Desktop/oneMovieProject/oneMovieBackEnd/test/login.test.js",
+        "file": "/test/login.test.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "login request",
+            "fullTitle": "loging test login request",
+            "timedOut": false,
+            "duration": 371,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "(0, _supertest2.default)('http://localhost:8040').post('/token').send(testUser).end(function (err, res) {\n  var body = res.body;\n  var message = body.message;\n  _assert2.default.equal(message, 'welcome to one movie');\n  done();\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "69bffd02-ab59-4db8-9983-bb99e52cf074",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "69bffd02-ab59-4db8-9983-bb99e52cf074"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 371,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 2000
+  },
+  "copyrightYear": 2018
+}

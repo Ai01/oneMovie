@@ -1,10 +1,20 @@
 # 开发环境准备
 version: '3'
+volumes:
+  mysql-data:
+    driver: local
+  mysql-log:
+    driver: local
+  mysql-conf:
+    driver: local
+
 services:
   mysql:
     image: mysql:latest
     ports:
     - "3307:3306"
+    volumes:
+      - "mysql-log:/var/log/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: 'admin'
     restart: always
@@ -12,9 +22,4 @@ services:
     image: rabbitmq:latest
     ports:
     - "5672:5672"
-    restart: always
-  elasticSearch:
-    image: elasticsearch:latest
-    ports:
-      - "3309:9200"
     restart: always
