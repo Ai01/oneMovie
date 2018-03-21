@@ -1,14 +1,14 @@
 {
   "stats": {
-    "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "suites": 2,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2018-03-20T15:58:57.972Z",
-    "end": "2018-03-20T15:58:58.573Z",
-    "duration": 601,
-    "testsRegistered": 1,
+    "start": "2018-03-21T11:30:01.420Z",
+    "end": "2018-03-21T11:30:01.727Z",
+    "duration": 307,
+    "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -19,7 +19,7 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "432619c2-2d0e-4714-9ea1-1333c46028cc",
+    "uuid": "8623c9b7-d9a4-432d-aa1d-2cd2b8646053",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "b2441122-7171-4dd7-8ec7-323254245222",
+        "uuid": "9766e50f-2bdb-4548-8545-c94976e01463",
         "title": "loging test",
         "fullFile": "/Users/baihaihui/Desktop/oneMovieProject/oneMovieBackEnd/test/login.test.js",
         "file": "/test/login.test.js",
@@ -39,28 +39,66 @@
             "title": "login request",
             "fullTitle": "loging test login request",
             "timedOut": false,
-            "duration": 371,
+            "duration": 178,
             "state": "passed",
             "speed": "slow",
             "pass": true,
             "fail": false,
             "pending": false,
-            "code": "(0, _supertest2.default)('http://localhost:8040').post('/token').send(testUser).end(function (err, res) {\n  var body = res.body;\n  var message = body.message;\n  _assert2.default.equal(message, 'welcome to one movie');\n  done();\n});",
+            "code": "(0, _supertest2.default)('http://localhost:8040').post('/token').set('Cookie', ['sessionId=eyJ1c2VySWQiOjIsIl9leHBpcmUiOjE1MjE3MTY2MjI4NDgsIl9tYXhBZ2UiOjg2NDAwMDAwfQ==;sessionId.sig=3RSiHeKA0_JPJfmGb7qS2ReGDCU']).send(testUser).expect(200).end(function (err, res) {\n  if (err) {\n    return done(err);\n  }\n  var body = res.body;\n  var message = body.message;\n  _assert2.default.equal(message, 'welcome to one movie');\n  return done();\n});",
             "err": {},
             "isRoot": false,
-            "uuid": "69bffd02-ab59-4db8-9983-bb99e52cf074",
+            "uuid": "e421fa7f-a9fc-4bdd-95af-596ff1335ed1",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "69bffd02-ab59-4db8-9983-bb99e52cf074"
+          "e421fa7f-a9fc-4bdd-95af-596ff1335ed1"
         ],
         "failures": [],
         "pending": [],
         "skipped": [],
-        "duration": 371,
+        "duration": 178,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "9d15381b-5d40-4b09-a8ba-91b5f707ac93",
+        "title": "create user",
+        "fullFile": "/Users/baihaihui/Desktop/oneMovieProject/oneMovieBackEnd/test/user.test.js",
+        "file": "/test/user.test.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "should return user object",
+            "fullTitle": "create user should return user object",
+            "timedOut": false,
+            "duration": 116,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "return (0, _supertest2.default)(url).post('/user').send({ userInfo: testUser }).expect(200).then(function (response) {\n  var body = response.body;\n  var user = body.user;\n\n  _chai.assert.isOk(user);\n  delete testUser.password;\n  console.log(user, testUser);\n  _chai.assert.deepEqual(user, testUser);\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "8bb6d86b-8792-4696-8480-1e5eff21ba22",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "8bb6d86b-8792-4696-8480-1e5eff21ba22"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 116,
         "root": false,
         "rootEmpty": false,
         "_timeout": 2000

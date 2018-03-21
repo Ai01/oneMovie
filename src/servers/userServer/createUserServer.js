@@ -5,9 +5,12 @@ const createUserServer = async (ctx) => {
   const { body } = request;
   const { userInfo } = body;
   const newUserInstance = await UserDomain.create(userInfo);
+
+  console.log(newUserInstance.password);
+
   if (newUserInstance) {
     ctx.body = {
-      user: newUserInstance,
+      user: { name: newUserInstance.name, phone: newUserInstance.phone, email: newUserInstance.email },
     };
   } else {
     ctx.throw(500, '创建用户失败，发生未知错误');
