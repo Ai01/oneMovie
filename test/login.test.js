@@ -7,10 +7,25 @@ const testUser = {
 };
 
 describe('loging test', () => {
-  it('login request', (done) => {
+  // it('缺少密码', (done) => {
+  //
+  // });
+  //
+  // it('缺少手机号', (done) => {
+  //
+  // });
+  //
+  // it('密码格式不正确', (done) => {
+  //
+  // });
+  //
+  // it('手机号格式不正确', (done) => {
+  //
+  // });
+
+  it('正确情况下登录', (done) => {
     request('http://localhost:8040')
       .post('/token')
-      .set('Cookie', ['sessionId=eyJ1c2VySWQiOjIsIl9leHBpcmUiOjE1MjE3MTY2MjI4NDgsIl9tYXhBZ2UiOjg2NDAwMDAwfQ==;sessionId.sig=3RSiHeKA0_JPJfmGb7qS2ReGDCU'])
       .send(testUser)
       .expect(200)
       .end((err, res) => {

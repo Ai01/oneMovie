@@ -1,6 +1,16 @@
 import hash from 'src/utils/myCrypto';
+import createError from 'src/error/baseError';
 import { UserModel } from 'src/models';
 import BaseDomain from '../base/baseDomain';
+
+const checkName = (name) => {
+  if (!name) {
+    return false;
+  }
+
+  return true;
+};
+
 
 class UserDomain extends BaseDomain {
   static model = UserModel;
@@ -9,9 +19,24 @@ class UserDomain extends BaseDomain {
     if (!account) {
       throw new Error('没有用户信息');
     }
+
     const {
       name, password, phone, email,
     } = account;
+    if (!checkName(name)) {
+      throw createError('用户名格式不正确', 400);
+    }
+
+    if (!password) {
+      throw createError('密码格式不正确', 400);
+    }
+    if (!phone) {
+      throw createError('手机格式不正确', 400);
+    }
+    if (!email) {
+      throw createError('email格式不正确', 400);
+    }
+
     const u = await UserDomain.findOne({
       where: {
         phone,
@@ -20,7 +45,7 @@ class UserDomain extends BaseDomain {
     });
 
     if (u) {
-      throw new Error('此手机号已经存在，请检查');
+      throw createError('该手机号已经注册了', 400);
     }
 
     return await super.create(

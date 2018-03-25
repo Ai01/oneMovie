@@ -18,6 +18,10 @@ router.post('/token', async (ctx) => {
 
 // user
 
+router.get('/user/:id', async (ctx) => {
+  await UserController.getUser(ctx);
+});
+
 router.post('/user', async (ctx) => {
   await UserController.createUser(ctx);
 });

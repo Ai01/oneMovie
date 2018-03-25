@@ -1,13 +1,26 @@
-import { privilegeServer, createUserServer, deleteUserServer, updateUserServer, sendMailServer } from 'src/servers';
+import {
+  privilegeServer,
+  createUserServer,
+  deleteUserServer,
+  updateUserServer,
+  sendMailServer,
+  getUserServer,
+} from 'src/servers';
 
+
+const getUser = async (ctx) => {
+  const hasGetUserPrivilege = await privilegeServer(ctx, ['get_user']);
+  if (!hasGetUserPrivilege) {
+    ctx.throw(400, '你没有获取用户信息的权限');
+  }
+
+  await getUserServer(ctx);
+};
+
+// 创建用户没有权限限制
 const createUser = async (ctx) => {
-  // const hasCreateUserPrivilegeOrNot = await privilegeServer(ctx, ['create_user']);
-  // if (!hasCreateUserPrivilegeOrNot) {
-  //   ctx.throw(400, '你没有创建用户的权限');
-  // }
-
   await createUserServer(ctx);
-  await sendMailServer({ content: 'test', sendMailTo: 'baihaihui131225@gmail.com'});
+  await sendMailServer({ content: 'test', sendMailTo: 'baihaihui131225@gmail.com' });
 };
 
 // TODO:bai批量删除怎么写？
@@ -30,11 +43,11 @@ const updateUser = async (ctx) => {
   await updateUserServer(ctx);
 };
 
-
 const userController = {
   createUser,
   deleteUser,
   updateUser,
+  getUser,
 };
 
 export default userController;

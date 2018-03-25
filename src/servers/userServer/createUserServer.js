@@ -6,8 +6,6 @@ const createUserServer = async (ctx) => {
   const { userInfo } = body;
   const newUserInstance = await UserDomain.create(userInfo);
 
-  console.log(newUserInstance.password);
-
   if (newUserInstance) {
     ctx.body = {
       user: { name: newUserInstance.name, phone: newUserInstance.phone, email: newUserInstance.email },

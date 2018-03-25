@@ -33,6 +33,9 @@ const Privileges = [
     name: 'delete_user',
   },
   {
+    name: 'get_user',
+  },
+  {
     name: 'get_movies',
   },
 ];

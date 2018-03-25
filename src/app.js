@@ -7,6 +7,22 @@ import { SessionConfig } from './configs/session';
 
 const app = new Koa();
 
+// 错误处理
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (e) {
+    console.log(e.code, e.message);
+    ctx.status = e.status || 500;
+    ctx.body = {
+      error: {
+        code: e.code || 500,
+        message: e.message,
+      },
+    };
+  }
+});
+
 // cors
 app.use(cors({
   origin: 'http://localhost:4000',
